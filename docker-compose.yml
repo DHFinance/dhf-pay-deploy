@@ -1,0 +1,30 @@
+version: "3"
+services:
+  casper-back:
+    build:
+      context: "./casper-back"
+      dockerfile: Dockerfile
+    restart: always
+    command: ["npm","run", "start"]
+    environment:
+      DB_HOST: "casper-db"
+      DB_USER: "casper-back"
+      DB_PASSWORD: "casperdemo33221"
+      DB_DATABASE: "casper-back"
+    ports:
+      - "3001:3001"
+
+  casper-db:
+    image: "postgres"
+    environment:
+      POSTGRES_USER: "casper-back"
+      POSTGRES_PASSWORD: "casperdemo33221"
+    restart: unless-stopped
+  casper-front:
+    build:
+      context: "./casper-front"
+      dockerfile: Dockerfile
+    restart: always
+    command: ["npm", "run", "start"]
+    ports:
+      - "3000:3000"
