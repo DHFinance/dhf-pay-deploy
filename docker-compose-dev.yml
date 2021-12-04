@@ -1,0 +1,47 @@
+version: "3"
+services:
+
+
+  casper-db:
+    image: "postgres"
+    environment:
+      POSTGRES_USER: "casper-back"
+      POSTGRES_PASSWORD: "casperdemo33221"
+    restart: unless-stopped
+  casper-front:
+    volumes:
+      - "./casper-front/.env.local:/opt/app/casper-front/.env.local"
+    build:
+      context: "./casper-front"
+      dockerfile: Dockerfile
+    restart: always
+
+    command: ["npm", "run", "dev"]
+    ports:
+      - "4000:4000"
+  casper-back:
+    volumes:
+      - "./casper-back/.env:/opt/app/casper-back/.env"
+#      - type: bind
+#        source: ./back
+#        target: /opt/app/casper-back
+#        volume:
+#          nocopy: true
+
+    tty: true
+    build:
+      context: "./casper-back"
+      dockerfile: Dockerfile
+    restart: always
+    command: [ "npm","run", "start:dev" ]
+    environment:
+      DB_HOST: "casper-db"
+      DB_USER: "casper-back"
+      DB_PASSWORD: "casperdemo33221"
+      DB_DATABASE: "casper-back"
+    ports:
+      - "3001:3001"
+
+volumes:
+  back:
+
