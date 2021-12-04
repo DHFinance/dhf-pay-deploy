@@ -11,6 +11,7 @@ services:
   casper-front:
     volumes:
       - "./casper-front/.env.local:/opt/app/casper-front/.env.local"
+      - "./front:/opt/app/casper-front"
     build:
       context: "./casper-front"
       dockerfile: Dockerfile
@@ -22,12 +23,7 @@ services:
   casper-back:
     volumes:
       - "./casper-back/.env:/opt/app/casper-back/.env"
-#      - type: bind
-#        source: ./back
-#        target: /opt/app/casper-back
-#        volume:
-#          nocopy: true
-
+      - "./back:/opt/app/casper-back"
     tty: true
     build:
       context: "./casper-back"
