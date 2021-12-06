@@ -13,6 +13,8 @@ services:
       DB_PASSWORD: "casperdemo33221"
       DB_DATABASE: "casper-back"
       SECRET_HASH: "qweqweqwe12312321qweqwe123123"
+    ports:
+      - "8086:3001"
   casper-db:
     image: "postgres"
     container_name: casper-db
@@ -27,3 +29,5 @@ services:
       dockerfile: Dockerfile
     restart: always
     command: ["npm", "run", "start"]
+    ports:
+     - "8085:3000"
