@@ -1,4 +1,18 @@
 stages:
   - build
   - deploy
-  
+build:
+  stage: build
+  script:
+    - "docker-compose -f docker-compose-ci.yml build casper-casper-back"
+    - "docker-compose -f docker-compose-ci.yml build casper-casper-front"
+  tags:
+    - "demo"
+deploy:
+  stage: deploy
+  script:
+    - "docker-compose -f docker-compose-ci.yml down"
+    - "docker-compose -f docker-compose-ci.yml up -d"
+  when: manual
+  tags: 
+    - "demo"
