@@ -37,7 +37,7 @@ services:
      - "8085:3000"
 
   casper-processor:
-    container_name: casper-front
+    container_name: casper-processor
     build:
       context: "./casper-front"
       dockerfile: Dockerfile
