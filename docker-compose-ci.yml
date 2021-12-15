@@ -1,6 +1,8 @@
 version: "3"
 services:
   casper-back:
+    volumes:
+      - "./casper-back/.env:/opt/app/casper-back/.env"
     build:
       context: "./casper-back"
       dockerfile: Dockerfile
@@ -24,6 +26,8 @@ services:
     restart: always
   casper-front:
     container_name: casper-front
+    volumes:
+      - "./casper-front/.env.server:/opt/app/casper-front/.env.server"
     build:
       context: "./casper-front"
       dockerfile: Dockerfile
