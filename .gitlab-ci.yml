@@ -3,19 +3,20 @@ stages:
   - deploy
 build:
   stage: build
-  before_script:
-    - "docker-compose -f docker-compose-ci.yml down"
   script:
     - "docker-compose -f docker-compose-ci.yml build casper-back"
     - "docker-compose -f docker-compose-ci.yml build casper-front"
     - "docker-compose -f docker-compose-ci.yml build casper-processor"
   tags:
     - "demo"
+  when: manual
 deploy:
   stage: deploy
   script:
     - "docker-compose -f docker-compose-ci.yml down"
     - "docker-compose -f docker-compose-ci.yml up -d"
   when: manual
+  needs:
+    - "build"
   tags: 
     - "demo"
