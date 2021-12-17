@@ -1,0 +1,72 @@
+version: "3"
+services:
+  casper-back:
+    volumes:
+      - "./casper-back/.env:/opt/app/casper-back/.env"
+    build:
+      context: "./casper-back"
+      dockerfile: Dockerfile
+    restart: always
+    container_name: casper-back
+    command: ["npm","run", "start"]
+    environment:
+      DB_HOST: "casper-db"
+      DB_USER: "casper-back"
+      DB_PASSWORD: "casperdemo33221"
+      DB_DATABASE: "casper-back"
+      SECRET_HASH: "qweqweqwe12312321qweqwe123123"
+    ports:
+      - "8086:3001"
+  casper-db:
+    image: "postgres"
+    container_name: casper-db
+    environment:
+      POSTGRES_USER: "casper-back"
+      POSTGRES_PASSWORD: "casperdemo33221"
+    restart: always
+  casper-front:
+    container_name: casper-front
+    volumes:
+      - "./casper-front/.env.server:/opt/app/casper-front/.env.server"
+    build:
+      context: "./casper-front"
+      dockerfile: Dockerfile
+    restart: always
+    command: ["npm", "run", "start"]
+    ports:
+     - "8085:3000"
+
+  casper-processor:
+    container_name: casper-processor
+    build:
+      context: "./casper-front"
+      dockerfile: Dockerfile
+    restart: always
+    command: ["npm", "run", "start"]
+    ports:
+     - "8085:3000"
+
+  casper-rabbitmq:
+    # There is a prebuilt RabbitMQ image; see
+    # https://hub.docker.com/_/rabbitmq/ for details.
+    # This variant is built on Alpine Linux (it's smaller) and includes
+    # the management UI.
+    image: 'rabbitmq:3.6-management-alpine'
+
+    # These ports are exposed on the host; 'hostport:containerport'.
+    # You could connect to this server from outside with the *host's*
+    # DNS name or IP address and port 5672 (the left-hand side of the
+    # colon).
+    ports:
+      # The standard AMQP protocol port
+      - '5672:5672'
+      # HTTP management UI
+      - '15672:15672'
+
+    # Run this container on a private network for this application.
+    # This is necessary for magic Docker DNS to work: other containers
+    # also running on this network will see a host name "rabbitmq"
+    # (the name of this section) and the internal port 5672, even though
+    # that's not explicitly published above.
+    #networks:
+    #  - network
