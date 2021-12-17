@@ -9,7 +9,7 @@ services:
       POSTGRES_PASSWORD: "casperdemo33221"
     restart: unless-stopped
     ports:
-      - "5432:5432"
+      - "5433:5432"
   casper-front:
     volumes:
       - "./casper-front/.env.local:/opt/app/casper-front/.env.local"
