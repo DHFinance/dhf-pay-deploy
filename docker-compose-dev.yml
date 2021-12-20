@@ -41,9 +41,11 @@ services:
       - "3001:3001"
 
   casper-processor:
-    container_name: casper-front
+    container_name: casper-processor
+    volumes:
+      - "./processor/.env:/opt/app/casper-processor/.env"
     build:
-      context: "./casper-front"
+      context: "./processor"
       dockerfile: Dockerfile
     restart: always
     command: ["npm", "run", "start"]
