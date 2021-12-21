@@ -4,9 +4,9 @@ stages:
 build:
   stage: build
   script:
-    - "docker-compose -f docker-compose-ci.yml build casper-back"
-    - "docker-compose -f docker-compose-ci.yml build casper-front"
-    - "docker-compose -f docker-compose-ci.yml build casper-processor"
+    - "docker-compose -f docker-compose-ci.yml build --no-cache casper-back"
+    - "docker-compose -f docker-compose-ci.yml build --no-cache casper-front"
+    - "docker-compose -f docker-compose-ci.yml build --no-cache casper-processor"
   tags:
     - "demo"
   when: manual
@@ -14,7 +14,7 @@ deploy:
   stage: deploy
   script:
     - "docker-compose -f docker-compose-ci.yml down"
-    - "docker-compose -f docker-compose-ci.yml up -d"
+    - "docker-compose -f docker-compose-ci.yml up -d --force-recreate"
   when: manual
   needs:
     - "build"
