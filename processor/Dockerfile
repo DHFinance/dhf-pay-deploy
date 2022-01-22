@@ -1,6 +1,6 @@
 FROM node:lts
 RUN mkdir -p /opt/app
-RUN git clone https://github.com/DHFinance/casper-processor.git /opt/app/casper-processor
+RUN git clone https://github.com/DHFinance/dhf-pay-processor.git /opt/app/casper-processor
 WORKDIR /opt/app/casper-processor
 COPY .env /opt/app/casper-processor/.env
 RUN npm i
