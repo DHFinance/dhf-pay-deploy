@@ -1,6 +1,6 @@
 ## DHF PAY 
 The crypto currency payment gateway on the CSPR blockchain. Made for pay and be paid easy and chill with blockchain and Casper Network.
-System composet from 3 services:
+System composet from 3 service:
 
 |                |                          |                         |
 |----------------|-------------------------------|-----------------------------|
