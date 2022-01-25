@@ -8,6 +8,10 @@ System composet from 3 services:
 |Frontend          |<https://github.com/DHFinance/dhf-pay-front>            |Service frontend            |
 |Processor          |<https://github.com/DHFinance/dhf-pay-processor>| Process a background tasks|
 
+## Prerequisites
+
+Docker 19  or higher
+
 ## Configure
 - Set up environments in casper-back/.env. See details at <https://github.com/DHFinance/dhf-pay-back>
 - Set up environments in casper-front/.env.server See details at <https://github.com/DHFinance/dhf-pay-front>
