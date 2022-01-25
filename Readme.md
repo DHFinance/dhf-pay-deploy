@@ -6,7 +6,7 @@ System composet from 3 services:
 |----------------|-------------------------------|-----------------------------|
 |Backend  |<https://github.com/DHFinance/dhf-pay-back>            | Service backend            |
 |Frontend          |<https://github.com/DHFinance/dhf-pay-front>            |Service frontend            |
-|Proseccor          |<https://github.com/DHFinance/dhf-pay-processor>| Process a background tasks|
+|Processor          |<https://github.com/DHFinance/dhf-pay-processor>| Process a background tasks|
 
 This reposetory let set up and run service using docker composer
 
