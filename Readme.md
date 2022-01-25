@@ -15,4 +15,6 @@ System composet from 3 services:
 
 ## Run 
 
-`docker compose up `
+run `docker compose up ` 
+
+then visit http://localhost:3000/
