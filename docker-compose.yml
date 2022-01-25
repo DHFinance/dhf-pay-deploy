@@ -14,7 +14,7 @@ services:
       DB_DATABASE: "casper-back"
       SECRET_HASH: "qweqweqwe12312321qweqwe123123"
     ports:
-      - "3001:3001"
+      - "8080:3001"
   casper-db:
     image: "postgres"
     container_name: casper-db
