@@ -7,6 +7,8 @@ services:
     restart: always
     container_name: casper-back
     command: ["npm","run", "start"]
+    volumes:
+    - "./casper-back/.env:/opt/app/casper-back/.env"
     environment:
       DB_HOST: "casper-db"
       DB_USER: "casper-back"
@@ -14,7 +16,7 @@ services:
       DB_DATABASE: "casper-back"
       SECRET_HASH: "qweqweqwe12312321qweqwe123123"
     ports:
-      - "8080:3001"
+      - "3001:3001"
   casper-db:
     image: "postgres"
     container_name: casper-db
