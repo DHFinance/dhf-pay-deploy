@@ -33,3 +33,23 @@ services:
     command: ["npm", "run", "start"]
     ports:
      - "3000:3000"
+
+  casper-processor:
+    container_name: casper-processor
+    build:
+      context: "./processor"
+      dockerfile: Dockerfile
+    restart: always
+    volumes:
+      - "./processor/.env:/opt/app/casper-processor/.env"
+    environment:
+      DB_HOST: "casper-db"
+      DB_USER: "casper-back"
+      DB_PASSWORD: "casperdemo33221"
+      DB_DATABASE: "casper-back"
+      SECRET_HASH: "qweqweqwe12312321qweqwe123123"
+    command: ["npm", "run", "start"]
+
+  casper-rabbitmq:
+    container_name: casper-rabbitmq
+    image: 'rabbitmq:3.6-management-alpine'
