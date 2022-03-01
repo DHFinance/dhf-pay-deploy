@@ -53,3 +53,16 @@ services:
   casper-rabbitmq:
     container_name: casper-rabbitmq
     image: 'rabbitmq:3.6-management-alpine'
+
+  varavel:
+    container_name: casper-laravel
+    build:
+      context: "./laravel"
+      dockerfile: Dockerfile
+#      args:
+#        user: sammy
+#        uid: 1000
+    restart: always
+    volumes:
+      - "./laravel:/app"
+
