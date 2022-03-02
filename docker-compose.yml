@@ -24,6 +24,9 @@ services:
       POSTGRES_USER: "casper-back"
       POSTGRES_PASSWORD: "casperdemo33221"
     restart: always
+    ports:
+      - "5432:5432"
+
   casper-front:
     container_name: casper-front
     build:
@@ -65,4 +68,6 @@ services:
     restart: always
     volumes:
       - "./laravel:/app"
+    ports:
+    - "8181:8181"
 

@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'mysql'),
+    'default' => env('DB_CONNECTION', 'pgsql'),
 
     /*
     |--------------------------------------------------------------------------
@@ -72,7 +72,7 @@ return [
             'username' => env('DB_USERNAME', 'forge'),
             'password' => env('DB_PASSWORD', ''),
             'charset' => 'utf8',
-            'prefix' => '',
+            'prefix' => 'lara_',
             'prefix_indexes' => true,
             'schema' => 'public',
             'sslmode' => 'prefer',
